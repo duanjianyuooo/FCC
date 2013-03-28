@@ -1,0 +1,36 @@
+#include "ifsf_main.h"
+#include "init.h"
+
+static int show_usage()
+{
+	printf("/*******************************/\n");
+	printf("*            FCC               */\n");
+	printf("/*******************************/\n\n\n");
+	int tmp = 0;
+	while (strcmp (usage[tmp][0], "end") != 0)
+	{
+		printf("%s\t\t%s\n", usage[tmp][0], usage[tmp][1]); 
+		tmp++;
+	}
+	return 0;
+}
+
+int main(int argc, char **argv)
+{
+	if (argc == 2)
+	{
+		if (strcmp (argv[1], "--version")== 0){
+			printf("the FCC version is %s\n", VERSION);
+		}else{
+			printf("the parameter is invalid\n");
+			show_usage();
+		}
+	}
+	run_log("%s", VERSION);
+	//init_log();
+	//init_memory();
+	//init_keyfile();
+	//init_cfgfile();
+	//start_proc();
+	return 0;
+}
