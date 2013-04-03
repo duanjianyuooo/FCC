@@ -1,5 +1,4 @@
 #include "ifsf_main.h"
-//#include "../init/init.h"
 #include "../ifsf/ifsf_common.h"
 
 static int show_usage()
@@ -20,6 +19,7 @@ int main(int argc, char **argv)
 {
 	int shm_ifsf_id;
 	int ret;
+	int semid;
 	
 	if (argc == 2)
 	{
@@ -31,20 +31,25 @@ int main(int argc, char **argv)
 		}
 	}
 	run_log("IFSF started VERSION is [%s]", VERSION);
-	
-	ifsf_shm = (IFSF_SHM *)init_memory((key_t)123, sizeof(IFSF_SHM), &shm_ifsf_id);
+
+	run_log("Start init_memory.....");
+	ifsf_shm = (IFSF_SHM *)init_memory((key_t)SHAMEMORY_KEY, sizeof(IFSF_SHM), &shm_ifsf_id);
 	if (ifsf_shm == NULL) {
 		run_log("!!!init_memory failed ");
 		exit(EXIT_FAILURE);
 	}
-	
-	//init_keyfile();
-	//init_cfgfile();
+
+	run_log("Start init keyfile .....");
+	semid = init_keyfile((key_t)SEMAPHORE_SET_KEY, IFSF_STRUCTURE_CNT);
+
+	run_log("Start init cfgfile .....");
+	init_cfgfile();
 	//start_proc();
 
 	ret = detach_shm(ifsf_shm, shm_ifsf_id);
 	if (ret == -2)
 		exit(EXIT_FAILURE);
 	rm_shm(shm_ifsf_id);
+	ifsf_shm = NULL;
 	return 0;
 }

@@ -3,7 +3,9 @@
 
 #define MAX_CACULA 1
 #define MAX_DISPOINT 16
-
+#define IFSF_STRUCTURE_CNT 6
+#define SHAMEMORY_KEY 001
+#define SEMAPHORE_SET_KEY 002
 
 typedef struct {
 	unsigned char Nb_Products;//number of products
@@ -12,13 +14,14 @@ typedef struct {
 	unsigned char Nb_Fp; //
 }C_DAT;
 
-/**
+/*
 *the dispensors database for preserving dispensor messages and transactions
 */
 typedef struct {
 	C_DAT c_dat[MAX_CACULA];
 	
 }IFSF_SHM;
+
 
 IFSF_SHM *ifsf_shm = NULL;
 

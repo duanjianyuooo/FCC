@@ -11,11 +11,16 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <errno.h>
-//#include "../ifsf/ifsf_common.h"
+
 
 #define CFGPATH "/home/App/ifsf/etc/"
 #define CDATKEY 
 
+
+struct initcfg{
+	unsigned char if_second_config;
+	unsigned char 
+};
 /**
 *@param: key is the key for alocating memory address,
 * 		  size is the size of share memory
@@ -23,8 +28,7 @@
 *@discribe: this function applys for a region of share memory 
 */
 char * init_memory(key_t key, size_t size, int *shmid);
-
-int init_key();
+int init_keyfile(key_t key, int n);
 
 
 #endif

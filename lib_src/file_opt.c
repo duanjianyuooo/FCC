@@ -153,12 +153,63 @@ int rm_shm(int shmid)
 	return 0;
 }
 
+
 int init_semaphore(key_t key, int n)
 {
-	int ret;
-	ret = semget(key, n, IPC_CREAT|0666);
-	if (ret == -1){
+	int semid;
+	semid = semget(key, n, IPC_CREAT|0666);
+	if (semid == -1){
 		run_log("!!!semget failed %s", strerror(errno));
 		return -1;
 	}
+	return semid;
+}
+
+
+union semnu{
+	int value;
+	struct semid_ds *buf;
+	unsigned short *array;
+	struct seminfo *__buf;
+};
+
+int set_semvalue(int semid, int n, int value)
+{
+	union semnu semnu;
+	semnu.value = value;
+	if (semctl(semid, n, SETVAL, semnu) == -1){
+		run_log("!!!set_semvalue failed %s", strerror(errno));
+		return -1;
+	}
+	return 0;
+}
+
+struct sembuf{
+	unsigned short sem_num;
+	short sem_op;
+	short sem_flg;
+};
+int sem_p(int semid, unsigned short  n)
+{
+	struct sembuf buf;
+	buf.sem_num = n;
+	buf.sem_op = -1;
+	if (semop(semid, &buf, 1) == -1){
+		run_log("!!! sem_p failed %s", strerror(errno));
+		return -1;
+	}
+	return 0;
+}
+
+int sem_v(int semid, unsigned short n)
+{	
+	struct sembuf buf;
+	buf.sem_num = n;
+	buf.sem_op = 1;
+	if (semop(semid, &buf, 1) == -1){
+		run_log("!!! sem_v failed %s", strerror(errno));
+		return -1;
+	}
+	return 0;
+
 }
