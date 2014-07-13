@@ -5,7 +5,7 @@ int cd_server()
 
 }
 
-int send_to_cd()
+int send_to_cd(int socket, char *message)
 {
 
 }

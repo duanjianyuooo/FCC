@@ -1,15 +1,13 @@
 include ../env.mk
 INCLUDE:=-I../include
-TARGET:=../lib/libduan.a
 SRC:=$(wildcard *.c)
 OBJS:=$(patsubst  %.c, %.o, $(SRC))
-.PHONY:all clean
+TARGET:=$(patsubst %.o, %.a, $(OBJS)) 
+.PHONY:all
 all:$(TARGET)
-$(OBJS):$(SRC)
+%.o:%.c
 	$(CC) $(INCLUDE) -c  $< -o $@
-
-$(TARGET):$(OBJS)
-	ar rc $(TARGET) $(OBJS) 
-
+%.a:%.o
+	ar rc ../lib/$@ $<
 clean:
-	rm *.o ../lib/*.a
+	rm ../lib/*.a

@@ -16,7 +16,7 @@ endef
 
 all:
 	$(call build)
-	$(CC) -o $(TARGET) $(CFLAG)  $(OBJDIR)/*.o $(LIBDIR)/libduan.a
+	$(CC) -o ../$(TARGET) $(CFLAG)  $(OBJDIR)/*.o $(LIBDIR)/*.a
 clean:
 	rm $(OBJDIR)/*.o $(TARGET)
 
