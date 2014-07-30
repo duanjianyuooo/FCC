@@ -8,6 +8,6 @@ all:$(TARGET)
 %.o:%.c
 	$(CC) $(INCLUDE) -c  $< -o $@
 %.a:%.o
-	ar rc ../lib/$@ $<
+	ar rc ../lib/$@  *.o
 clean:
 	rm ../lib/*.a

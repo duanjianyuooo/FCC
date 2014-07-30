@@ -14,3 +14,5 @@
    make sence of this, <apue> is a good tool book in linux c code skill.
 
    this porgram is based on FCC of css.Ld that I work in.
+
+   2. when you get the code, please record 

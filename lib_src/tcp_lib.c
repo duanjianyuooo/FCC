@@ -43,9 +43,12 @@ int tcp_connect(const char * ip, const int port)
 int tcp_server_init()
 {
 	int sock;
+	sock = socket(AF_INET, SOCK_STREAM, 0);
+	listen(sock, 5);
+
 	while (1) {
-		sock = socket(AF_INET, SOCK_STREAM, 0);
-		listen(sock, 5);
+
+		//select(sock+1, 
 	}
 }
 /*
