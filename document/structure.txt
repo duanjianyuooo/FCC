@@ -1,0 +1,24 @@
+this document is writen as the global structure for the FCC project
+
+1. program stream fingure
+	document/stream
+2. 	|---------------------------------------------------------------------------|
+	|																			|
+	|																			|
+	|																			|
+	|					this is the good position								|
+	|																			|
+	|																			|
+	|																			|
+	|																			|
+	|																			|
+	|																			|
+	|																			|
+	|																			|
+	|																			|
+	|																			|
+	+___________________________________________________________________________+
+
+
+
+	
