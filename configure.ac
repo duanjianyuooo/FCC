@@ -9,7 +9,7 @@ AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
 AC_PROG_CC
-
+AC_PROG_RANLIB
 # Checks for libraries.
 
 # Checks for header files.
@@ -29,4 +29,4 @@ AC_FUNC_FORK
 AC_FUNC_MALLOC
 AC_CHECK_FUNCS([alarm bzero ftime memset pow select socket strerror])
 
-AC_OUTPUT(Makefile)
+AC_OUTPUT(Makefile lib_src/Makefile src/ifsf/Makefile src/main/Makefile src/init/Makefile src/Makefile)
