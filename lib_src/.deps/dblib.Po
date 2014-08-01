@@ -1,0 +1,3 @@
+dblib.o: dblib.c ../include/lib_db.h
+
+../include/lib_db.h:
